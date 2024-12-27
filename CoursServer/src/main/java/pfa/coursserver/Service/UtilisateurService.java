@@ -9,6 +9,6 @@ import pfa.utilisateurserver.entity.Utilisateur;
 @FeignClient(name = "UtilisateurServer")
 
 public interface UtilisateurService {
-//    @GetMapping(path = "/clients/{userId}")
-//    Utilisateur userById(@PathVariable("userId") Long userId);
+    @GetMapping(path = "/user/{id}")
+     Utilisateur userById(@PathVariable("id") Long id);
 }

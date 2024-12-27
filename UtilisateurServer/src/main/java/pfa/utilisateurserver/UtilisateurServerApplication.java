@@ -8,6 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import pfa.utilisateurserver.entity.Role;
 import pfa.utilisateurserver.entity.Utilisateur;
 import pfa.utilisateurserver.repository.UtilisateurRepository;
 
@@ -23,5 +24,11 @@ public class UtilisateurServerApplication {
 		SpringApplication.run(UtilisateurServerApplication.class, args);
 	}
 
+	@Bean
+	CommandLineRunner init(UtilisateurRepository repository) {
+		return args -> {
+			repository.save(new Utilisateur(1L,"zdh","kj","opi","odi","oiedu","kdjhf", Role.ETUDIANT));
+		};
+	}
 
 }

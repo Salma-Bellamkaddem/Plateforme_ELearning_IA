@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pfa.utilisateurserver.criteria.UtilisateurCriteria;
 import pfa.utilisateurserver.dto.reponse.UtilisateurReponse;
 import pfa.utilisateurserver.dto.request.UtilisateurRequest;
 import pfa.utilisateurserver.entity.Utilisateur;
@@ -25,7 +26,10 @@ public class UtilisateurController {
         return ResponseEntity.ok(utilisateurService.createUtilisateur(utilisateurRequest));
     }
 
-
+//    @GetMapping
+//    public ResponseEntity<List<UtilisateurReponse>> getAllUtilisateurs(UtilisateurCriteria utilisateurCriteria) {
+//        return ResponseEntity.ok(utilisateurService.getUtilisateurs(utilisateurCriteria));
+//    }
 
     @Autowired
     UtilisateurRepository utilisateurRepository;
@@ -33,10 +37,10 @@ public class UtilisateurController {
     public List findAll() {
         return utilisateurRepository.findAll();
     }
-//    @GetMapping("/user/{id}")
-//    public Utilisateur findById(@PathVariable int id) throws Exception{
-//        return this.utilisateurRepository.findById((long) id).orElseThrow(()->new
-//                Exception("User inexistant"));
-//    }
+    @GetMapping("/{id}")
+    public Utilisateur findById(@PathVariable int id) throws Exception{
+        return this.utilisateurRepository.findById((long) id).orElseThrow(()->new
+                Exception("User inexistant"));
+    }
 }
 

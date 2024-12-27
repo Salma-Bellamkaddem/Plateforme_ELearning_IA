@@ -13,15 +13,15 @@ import pfa.utilisateurserver.entity.Utilisateur;
 public class Cours {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_cours;
+    private Long id_cours;
     private String titre;
     private String description;
     private String photoCours;
 
-
+    private Long userId;
     @Transient
-    @ManyToOne
-    @JoinColumn(name = "user_id")  // Clé étrangère vers User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private Utilisateur utilisateur;
 
 }

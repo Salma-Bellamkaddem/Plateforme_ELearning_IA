@@ -11,6 +11,8 @@ import pfa.utilisateurserver.repository.UtilisateurRepository;
 import pfa.utilisateurserver.service.UtilisateurService;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UtilisateurImpl implements UtilisateurService {
     @Autowired
@@ -36,7 +38,9 @@ public class UtilisateurImpl implements UtilisateurService {
 
     @Override
     public List<UtilisateurReponse> getUtilisateurs(UtilisateurCriteria criteria) {
-        return List.of();
+        List<Utilisateur> utilisateurs =utilisateurRepository.findAll();
+
+        return utilisateurs.stream().map(utilisateurMapper::toReponse).collect(Collectors.toList());
     }
 
     @Override
